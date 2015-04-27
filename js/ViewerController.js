@@ -46,7 +46,7 @@ var ViewerController = {
 
 
   onCredentialsEntered: function vc_onCredentialsEntered(uname, pwd) {
-    $('#username')[0].value = '';
+    $('#login')[0].value = '';
     $('#password')[0].value = '';
 
     // Verify the email is valid
@@ -59,7 +59,7 @@ var ViewerController = {
     }
 
     // Create privileged loader
-    var options = {username: uname, password: pwd}
+    var options = {login: uname, password: pwd}
     if (this.remap)
       options.test = true;
 

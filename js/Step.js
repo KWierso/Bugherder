@@ -214,12 +214,12 @@ Step.prototype.constructData = function Step_constructData() {
 Step.prototype.onSubmitError = function Step_onSubmitError(where, msg, i) {
   if (where == 'lct' && msg == 'HTTP status 400') {
     // There are a number of possibilities here:
-    // - an invalid username or password was supplied
+    // - an invalid login or password was supplied
     // - the bug we were trying to load is a security bug (shouldn't happen, unless someone
     //    changed the bug underneath us after the initial bug data load)
     // - a tester remapped to a non-existant bug on landfill, (they should know better :))
     // If we've failed trying to get the time/token on our very first bug, let's just put it
-    //   down to username/password, and abandon this submit attempt
+    //   down to login/password, and abandon this submit attempt
     // If we failed in the i-1th bug too, again abandon all hope. (Did you change your password while bugherder was working?!?)
     // Else, we'll note this one failed and try the next. If we carry on without further failure, then this was a
     //  security bug that wasn't one before
@@ -227,9 +227,9 @@ Step.prototype.onSubmitError = function Step_onSubmitError(where, msg, i) {
       // XXX What if we've already succesfully submitted some?
       delete Step.privilegedLoad;
       delete Step.privilegedUpdate;
-      delete Step.username;
+      delete Step.login;
       this.retries = [];
-      UI.showErrorMessage('The username or password you supplied was not valid. Submit attempt abandoned.');
+      UI.showErrorMessage('The login or password you supplied was not valid. Submit attempt abandoned.');
       UI.hideProgressModal();
       return;
     }

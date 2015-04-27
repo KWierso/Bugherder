@@ -216,14 +216,14 @@ var UI = {
 
 
   onCredentialsSubmit: function UI_onCredentialsSubmit(e) {
-    ViewerController.onCredentialsEntered($('#username').val(), $('#password').val());
-    $('#username').val('');
+    ViewerController.onCredentialsEntered($('#login').val(), $('#password').val());
+    $('#login').val('');
     $('#password').val('');
   },
 
 
   onCredentialsCancel: function UI_onCredentialsCancel(e) {
-    $('#username').val('');
+    $('#login').val('');
     $('#password').val('');
   },
 
