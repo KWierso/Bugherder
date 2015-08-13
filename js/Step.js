@@ -48,8 +48,10 @@ function Step(name, callbacks, isBackout) {
   this.haveComment = [];
 
   var options = {};
-  if (Step.remaps.items > 0)
-    options.test = true;
+  if (Step.remaps.items > 0) {
+    options.url = "https://bugzilla-dev.allizom.org/rest";
+    console.log("HI");
+  }
   this.unprivilegedLoader = bz.createClient(options);
 
   constructAttachedBugs(false);
@@ -187,8 +189,8 @@ Step.prototype.createBug = function Step_createBug(bugID, info) {
 
     if (bugID in Step.remaps) {
       bug.id = Step.remaps[bugID];
-      if ('resolution' in bug)
-        bug.product = 'mcMerge test product';
+//      if ('resolution' in bug)
+//        bug.product = 'mcMerge test product';
     }
     return bug;
   }
@@ -352,7 +354,7 @@ Step.prototype.submit = function Step_submit(i) {
     else
       self.postSubmit(i);
   };
-
+console.log(this.sendData[i]);
   Step.privilegedUpdate(this.sendData[i].id, this.sendData[i], callback);
 };
 
@@ -381,7 +383,7 @@ Step.prototype.postSubmit = function Step_postSubmit(i) {
   }
 
   var info = this.bugInfo[bugID];
-
+console.log(sent);
   // Disallow resolving if we just resolved the bug
   if ('resolution' in sent) {
     BugData.bugs[bugID].status = sent.status;
