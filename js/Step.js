@@ -141,6 +141,7 @@ Step.prototype.createBug = function Step_createBug(bugID, info) {
   if (comments.length > 0) {
     var text = comments.join('\n');
     bug.comment = this.createComment(text);
+    bug.comment_tags = ["bugherder"];
     changed = true;
   }
 
